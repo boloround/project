@@ -62,6 +62,8 @@ class Car
     }
 }
 
+setlocale(LC_MONETARY, 'en_US'); // Adds locaation info for monetry value
+
 $porsche = new Car("2014 Porsche 911", 114991, 7864, "images/porsche.jpg");
 $ford = new Car("2011 Ford F450", 55995, 14241, "images/ford.jpg");
 $lexus = new Car("2013 Lexus RX 350", 44700, 20000, "images/lexus.jpg");
@@ -85,26 +87,29 @@ foreach ($cars as $car) {
         <title>Your Car Dealership's Homepage</title>
     </head>
 <body>
-    <h1>Your Car Dealership</h1>
-    <ul>
-        <?php
-            if (!empty($cars_matching_search)) {
-                foreach ($cars_matching_search as $car) {
-                    $current_make_model = $car->getMake();
-                    $current_price = $car->getPrice();
-                    $current_miles = $car->getMiles();
-                    $current_image = $car->getImagePath();
-                    echo "<li> $current_make_model </li>";
-                    echo "<ul>";
-                        echo "<li> $$current_price </li>";
-                        echo "<li> Miles: $current_miles </li>";
-                        echo "<li><img src='$current_image' alt='$current_make_model'></li>";
-                    echo "</ul>";
+    <div class="container">
+        <h1>Your Car Dealership</h1>
+        <ul>
+            <?php
+                if (!empty($cars_matching_search)) {
+                    foreach ($cars_matching_search as $car) {
+                        $current_make_model = $car->getMake();
+                        // format money with commas and no decimal values
+                        $current_price = money_format('%(#10.0n', $car->getPrice());
+                        $current_miles = $car->getMiles();
+                        $current_image = $car->getImagePath();
+                        echo "<li><strong> $current_make_model </strong></li>";
+                        echo "<ul>";
+                            echo "<li> $current_price </li>";
+                            echo "<li> Miles: $current_miles </li>";
+                            echo "<li><img src='$current_image' alt='$current_make_model'></li>";
+                        echo "</ul>";
+                    }
+                } else {
+                    echo "Your search returned no results";
                 }
-            } else {
-                echo "Your search returned no results";
-            }
-        ?>
-    </ul>
+            ?>
+        </ul>
+    </div>
 </body>
 </html>
