@@ -48,9 +48,9 @@ class Car
         return $this->image_path;
     }
 
-    function worthBuying($max_price)
+    function worthBuying($max_price, $max_miles)
     {
-        return $this->price < $max_price;
+        return (($this->price <= $max_price) && ($this->miles <= $max_miles));
     }
 
     function __construct($car_make_model, $car_price, $car_miles, $car_image_path)
@@ -73,7 +73,7 @@ $cars = array($porsche, $ford, $lexus, $mercedes);
 
 $cars_matching_search = array();
 foreach ($cars as $car) {
-    if ($car->worthBuying($_GET["price"])) {
+    if ($car->worthBuying($_GET["price"], $_GET["miles"])) {
         array_push($cars_matching_search, $car);
     }
 }
@@ -88,17 +88,21 @@ foreach ($cars as $car) {
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
-            foreach ($cars_matching_search as $car) {
-                $current_make_model = $car->getMake();
-                $current_price = $car->getPrice();
-                $current_miles = $car->getMiles();
-                $current_image = $car->getImagePath();
-                echo "<li> $current_make_model </li>";
-                echo "<ul>";
-                    echo "<li> $$current_price </li>";
-                    echo "<li> Miles: $current_miles </li>";
-                    echo "<li><img src='$current_image' alt='$current_make_model'></li>";
-                echo "</ul>";
+            if (!empty($cars_matching_search)) {
+                foreach ($cars_matching_search as $car) {
+                    $current_make_model = $car->getMake();
+                    $current_price = $car->getPrice();
+                    $current_miles = $car->getMiles();
+                    $current_image = $car->getImagePath();
+                    echo "<li> $current_make_model </li>";
+                    echo "<ul>";
+                        echo "<li> $$current_price </li>";
+                        echo "<li> Miles: $current_miles </li>";
+                        echo "<li><img src='$current_image' alt='$current_make_model'></li>";
+                    echo "</ul>";
+                }
+            } else {
+                echo "Your search returned no results";
             }
         ?>
     </ul>
