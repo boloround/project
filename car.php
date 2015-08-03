@@ -2,9 +2,40 @@
 
 class Car
 {
-    public $make_model;
-    public $price;
-    public $miles;
+    private $make_model;
+    private $price;
+    private $miles;
+
+
+    function setMake($new_make)
+    {
+        $this->make_model = (string) $new_make;
+    }
+
+    function getMake()
+    {
+        return $this->make_model;
+    }
+
+    function setPrice($new_price)
+    {
+        $this->price = (int) $new_price;
+    }
+
+    function getPrice()
+    {
+        return $this->price;
+    }
+
+    function setMiles($new_miles)
+    {
+        $this->miles = (int) $new_miles;
+    }
+
+    function getMiles()
+    {
+        return $this->miles;
+    }
 
     function worthBuying($max_price)
     {
@@ -23,7 +54,6 @@ $porsche = new Car("2014 Porsche 911", 114991, 7864);
 $ford = new Car("2011 Ford F450", 55995, 14241);
 $lexus = new Car("2013 Lexus RX 350", 44700, 20000);
 $mercedes = new Car("Mercedes Benz CLS550", 39900, 37979);
-
 
 
 
@@ -47,10 +77,14 @@ foreach ($cars as $car) {
     <ul>
         <?php
             foreach ($cars_matching_search as $car) {
-                echo "<li> $car->make_model </li>";
+                $current_make_model = $car->getMake();
+                $current_price = $car->getPrice();
+                $current_miles = $car->getMiles();
+
+                echo "<li> $current_make_model </li>";
                 echo "<ul>";
-                    echo "<li> $$car->price </li>";
-                    echo "<li> Miles: $car->miles </li>";
+                    echo "<li> $$current_price </li>";
+                    echo "<li> Miles: $current_miles </li>";
                 echo "</ul>";
             }
         ?>
