@@ -5,6 +5,7 @@ class Car
     private $make_model;
     private $price;
     private $miles;
+    private $image_path;
 
 
     function setMake($new_make)
@@ -37,16 +38,27 @@ class Car
         return $this->miles;
     }
 
+    function setImagePath($new_image_path)
+    {
+        $this->image_path = (string) $new_image_path;
+    }
+
+    function getImagePath()
+    {
+        return $this->image_path;
+    }
+
     function worthBuying($max_price)
     {
         return $this->price < $max_price;
     }
 
-    function __construct($car_make_model, $car_price, $car_miles)
+    function __construct($car_make_model, $car_price, $car_miles, $car_image_path)
     {
         $this->make_model = $car_make_model;
         $this->price = $car_price;
         $this->miles = $car_miles;
+        $this->image_path = $car_image_path;
     }
 }
 
