@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Search results</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1>Your search results</h1>
+        <div class="container">
+            {% for car in cars_matching_search %}
+            <ul>
+                <li>{{ car.getMake }}</li>
+                <li>{{ car.getMiles }}</li>
+                <li>{{ car.getPrice }}</li>
+            </ul>
+            {% endfor %}
+            <p><a href='/'>Make another search.</a></p>
+        </div>
+    </body>
+</html>
