@@ -29,10 +29,10 @@
         return $app['twig']->render('cars.html.twig', array('cars' => $cars));
     });
 
-    $app->post("/new_car", function() use ($app) {
-      $task = new Car($_POST['description']);
-      $task->save();
-      return $app['twig']->render('cars.html.twig', array('car' => $car));
+    $app->post("/create_cars", function() use ($app) {
+      $car = new Car($_POST['make'], $_POST['miles'], $_POST['price'], $_POST['image']);
+      $car->save();
+      return $app['twig']->render('create_cars.html.twig', array('car' => $car));
    });
 
    $app->post("/search_car", function() use ($app) {

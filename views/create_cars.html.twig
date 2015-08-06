@@ -6,9 +6,17 @@
     <body>
         <div class="container">
             <h1>Your car was added!</h1>
+            {% for new_car in car %}
             <ul>
-                <li></li>
+
+                <li>{{ new_car.getMake }}</li>
+                <li>{{ new_car.getMiles }}</li>
+                <li>{{ new_car.getPrice }}</li>
+                <li><img src="{{ new_car.getImagePath }}"</li>
+
             </ul>
+            {% endfor %}
+            <p><a href='/'>Return to the front page</a></p>
         </div>
     </body>
 </html>
