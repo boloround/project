@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Our Car Inventory</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>Our list of cars</h1>
+                    {% for car in cars %}
+                    <ul>
+                        <li>{{ car.getMake }}</li>
+                        <li>{{ car.getMiles }}</li>
+                        <li>{{ car.getPrice }}</li>
+                    </ul>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-6">
+                    <h2>Search for a car</h2>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
