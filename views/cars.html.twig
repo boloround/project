@@ -10,10 +10,10 @@
                     <h1>Our list of cars</h1>
                     {% for car in cars %}
                     <ul>
-                        <li>{{ car.getMake }}</li>
-                        <li>{{ car.getMiles }}</li>
-                        <li>{{ car.getPrice }}</li>
-                        <li><img src="/../{{ car.getImagePath }}"></li>
+                        <li>Make/model: {{ car.getMake }}</li>
+                        <li>Miles: {{ car.getMiles }}</li>
+                        <li>Price: {{ car.getPrice }}</li>
+                        <li><img src="{{ car.getImagePath }}"></li>
                     </ul>
                     {% endfor %}
                 </div>
@@ -29,9 +29,24 @@
                           <input type='number' name='miles' id='miles' class="form-control">
                       </div>
                       <button name='submit' class='btn btn-success'>Submit</button>
-
+</form>
                       <h2>Add your car!</h2>
-                     
+                      <form  action="/create_cars" method="post">
+                          <div class="form-group">
+                              <label for="make">Make and model of your car</label>
+                              <input type="text" name="make" id="make" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="miles">How many miles are on your car?</label>
+                              <input type="number" name="miles" id="miles" class="form-control">
+                          </div>
+                          <div id="form-group">
+                              <label for="price">How much are you selling your car for?</label>
+                              <input type="number" name="price" id="price" class="form-control">
+                          </div>
+                          <button name="submit" class="btn btn-warning">Submit</button>
+                      </form>
+
                 </div>
             </div>
         </div>

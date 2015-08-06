@@ -29,7 +29,7 @@
         return $app['twig']->render('cars.html.twig', array('cars' => $cars));
     });
 
-    $app->post("/car", function() use ($app) {
+    $app->post("/new_car", function() use ($app) {
       $task = new Car($_POST['description']);
       $task->save();
       return $app['twig']->render('cars.html.twig', array('car' => $car));
